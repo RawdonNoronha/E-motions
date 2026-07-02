@@ -61,24 +61,29 @@ model = models.Sequential([
     # First Convotlution Layer
     layers.Conv2D(32,(3,3),activation="relu",input_shape=(48,48,1)),
     layers.BatchNormalization(),
+    layers.Conv2D(32,(3,3),activation="relu",input_shape=(48,48,1)),
     layers.MaxPooling2D(),
 
     # Second Convotlution Layer
     layers.Conv2D(64, (3,3), activation="relu"),
     layers.BatchNormalization(),
+    layers.Conv2D(64, (3,3), activation="relu"),
     layers.MaxPooling2D(),
 
     # Third Convotlution Layer
     layers.Conv2D(128, (3, 3), activation="relu"),
     layers.BatchNormalization(),
+    layers.Conv2D(128, (3, 3), activation="relu"),
     layers.MaxPooling2D(),
 
     layers.Flatten(),
 
-    layers.Dense(128, activation="relu"),
+    layers.Dense(256, activation="relu"),
     layers.BatchNormalization(),
 
     layers.Dropout(0.5),
+
+    layers.Dense(128, activation="relu"),
 
     layers.Dense(7, activation="softmax")
 ])
@@ -106,7 +111,7 @@ early_stopping = EarlyStopping(
 history = model.fit(
     train_dataset,
     validation_data=test_dataset,
-    epochs=20,
+    epochs=100,
     callbacks=[checkpoint, early_stopping]
 )
 

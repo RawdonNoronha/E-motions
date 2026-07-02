@@ -1,5 +1,8 @@
 # Dataset
 dataset/
 
+# Models
+1st models/
+
 # Virtual environment
 .venv/
